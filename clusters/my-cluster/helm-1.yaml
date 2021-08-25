@@ -13,14 +13,13 @@ spec:
         name: podinfo
         namespace: flux-system
       version: 6.0.0
-      values:
-        ingress:
-          hosts:
-            - host: srl.com
-              paths:
-                - path: /
   interval: 5m0s
   releaseName: podinfo-flux-git
   targetNamespace: default
   values:
     replicaCount: 2
+    ingress:
+      hosts:
+        - host: srl.com
+          paths:
+            - path: /
