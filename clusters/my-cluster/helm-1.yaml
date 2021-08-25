@@ -16,6 +16,7 @@ spec:
   interval: 5m0s
   releaseName: podinfo-flux-git
   targetNamespace: default
+  storageNamespace: default
   values:
     replicaCount: 1
     ingress:
