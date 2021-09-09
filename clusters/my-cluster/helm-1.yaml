@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo-flux-git
+  namespace: flux-apps
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      interval: 1m0s
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+        namespace: flux-system
+      version: 6.0.0
+  interval: 5m0s
+  releaseName: podinfo-flux-git
+  targetNamespace: default
+  storageNamespace: default
+  values:
+    replicaCount: 1
+    ingress:
+      hosts:
+        - host: srl.com
+          paths:
+            - path: /
