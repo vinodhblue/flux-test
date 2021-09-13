@@ -13,6 +13,7 @@ metadata:
   name: pxc-db
   namespace: flux-system
 spec:
+  interval: 10m0s
   chart:
     spec:
       chart: pxc-db
@@ -24,7 +25,8 @@ spec:
       valuesFiles:
       - values.yaml
   kubeConfig: 
-    secretRef: gke-paas-2
+    secretRef: 
+      name: gke-paas-2
   releaseName: pxc-1
   targetNamespace: ns1
   storageNamespace: ns1
