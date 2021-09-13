@@ -27,7 +27,8 @@ spec:
   kubeConfig: 
     secretRef: 
       name: gke-paas-2
-  releaseName: pxc-1
+  dbName: pxc-db
+  releaseName: pxc-db
   targetNamespace: ns1
   storageNamespace: ns1
   # dependsOn: pxc-operator
@@ -58,7 +59,7 @@ spec:
       sidecarVolumes:
       - name: backup-nfs
         persistentVolumeClaim:
-          claimName: pxc-db
+          claimName: pvc-pxc-db
       size: 3
     retention: 1
     schedule: 45 23 1 * *
