@@ -1,0 +1,60 @@
+apiVersion:  helm.toolkit.fluxcd.io/v2beta1 
+kind: HelmRelease
+metadata:
+  name: pxc-db
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: pxc-db
+      sourceRef:
+        kind: HelmRepository
+        name: paas
+      version: 1.8.0
+      interval: 10m
+      valuesFiles:
+      - values.yaml
+  kubeConfig: 
+    secretRef: gke-paas-2
+  releaseName: pxc-db
+  targetNamespace: pxc
+  storageNamespace: pxc
+  dependsOn: 
+  - pxc-operator
+  timeout: 10m0s
+  install:
+    createNamespace: false
+    skipCRDs: false
+  valuesFrom:
+  - kind: Secret
+    name: pxc-db-secret
+    valuesKey: root-password
+    targetPath: secrets.passwords.root    
+  values:
+    backupFrequency: MW
+    haproxy:
+      enabled: true
+      serviceType: LoadBalancer
+    pxc:
+      image:
+        tag: 8.0.22-13.1
+      persistence:
+        enabled: true
+        size: 1Gi
+      resources:
+        requests:
+          cpu: 400m
+          memory: 4G
+      sidecarVolumes:
+      - name: backup-nfs
+        persistentVolumeClaim:
+          claimName: pvc-mysql-0151
+      size: 3
+    retention: 1
+    schedule: 45 23 1 * *
+    scheduleIncremental: 45 23 * * 0
+    # secrets:
+    #   passwords:
+    #     root: Db@1234567
+    upgradeOptions:
+      apply: Disabled

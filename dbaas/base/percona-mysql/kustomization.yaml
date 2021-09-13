@@ -1,0 +1,52 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- pxc-db.yaml
+- pxc-operator.yaml
+- pxc-secret.yaml
+
+replacements:
+  - source: 
+      kind: Secret
+      name: pxc-db-secret
+      fieldPath: metadata.name
+    targets:
+    - select:
+        name: pxc-db
+        kind: HelmRelease
+      fieldPaths: 
+      - spec.valuesFrom.0.name
+  - source: 
+      kind: HelmRelease
+      name: pxc-operator
+      fieldPath: metadata.name
+    targets:
+    - select:
+        name: pxc-db
+        kind: HelmRelease
+      fieldPaths: 
+      - spec.dependsOn.0
+  - source: 
+      kind: HelmRelease
+      name: pxc-db
+      fieldPath: metadata.name
+    targets:
+    - select:
+        kind: HelmRelease
+        name: pxc-db
+      fieldPaths: 
+      - spec.releaseName
+      - spec.values.pxc.sidecarVolumes.0.persistentVolumeClaim.claimName
+  - source: 
+      kind: HelmRelease
+      name: pxc-operator
+      fieldPath: metadata.name
+    targets:
+    - select:
+        kind: HelmRelease
+        name: pxc-operator
+      fieldPaths: 
+      - spec.releaseName
+
+# 
+namePrefix: ""
