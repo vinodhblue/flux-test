@@ -21,6 +21,7 @@ spec:
   targetNamespace: tenant1 # Set it actual namespace where helm chart needs to be installed
   storageNamespace: tenant1 # Set it actual namespace where helm chart needs to be installed, same as previous
   timeout: 10m0s
+  interval: 10m0s
   install:
     createNamespace: true
     skipCRDs: false
