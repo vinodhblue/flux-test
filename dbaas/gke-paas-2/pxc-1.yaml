@@ -27,7 +27,6 @@ spec:
   kubeConfig: 
     secretRef: 
       name: gke-paas-2
-  dbName: pxc-db
   releaseName: pxc-db
   targetNamespace: ns1
   storageNamespace: ns1
@@ -42,6 +41,7 @@ spec:
     valuesKey: root-password
     targetPath: secrets.passwords.root    
   values:
+    dbName: pxc-db
     backupFrequency: MW
     haproxy:
       enabled: true
