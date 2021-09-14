@@ -9,7 +9,7 @@ spec:
       chart: pxc-operator
       sourceRef:
         kind: HelmRepository
-        name: paas
+        name: percona
       version: 1.8.0
       interval: 10m
       valuesFiles:
