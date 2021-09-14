@@ -10,7 +10,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: percona
-      version: 1.8.0
+      version: 0.1.12
       interval: 10m
       valuesFiles:
       - values.yaml
