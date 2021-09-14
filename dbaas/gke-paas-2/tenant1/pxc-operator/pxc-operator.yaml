@@ -15,7 +15,8 @@ spec:
       valuesFiles:
       - values.yaml
   kubeConfig: 
-    secretRef: gke-paas-2
+    secretRef: 
+      name: gke-paas-2 # Cluster kubeconfig secret name
   releaseName: pxc-operator # Match with app name
   targetNamespace: tenant1 # Set it actual namespace where helm chart needs to be installed
   storageNamespace: tenant1 # Set it actual namespace where helm chart needs to be installed, same as previous
