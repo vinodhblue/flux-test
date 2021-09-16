@@ -1,0 +1,31 @@
+apiVersion:  helm.toolkit.fluxcd.io/v2beta1 
+kind: HelmRelease
+metadata:
+  name: gke-paas-2-tenant2-pxc-operator # gke-paas-2-tenant1-pxc-operator
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: pxc-operator
+      sourceRef:
+        kind: HelmRepository
+        name: percona
+      version: 0.1.12
+      interval: 10m
+      valuesFiles:
+      - values.yaml
+  kubeConfig: 
+    secretRef: 
+      name: gke-paas-2 # gke-paas-2 # Cluster kubeconfig secret name
+  releaseName: pxc-operator # Match with app name
+  targetNamespace: tenant2 # tenant1 # Set it actual namespace where helm chart needs to be installed
+  storageNamespace: tenant2 # tenant1 # Set it actual namespace where helm chart needs to be installed, same as previous
+  timeout: 10m0s
+  interval: 10m0s
+  install:
+    createNamespace: true
+    skipCRDs: false
+  values:
+    image:
+      repository: sridharlreddy/percona-operator
+      tag: 1.8.0-v1
