@@ -44,7 +44,7 @@ spec:
         size: 1GB # 1Gi
       resources:
         requests:
-          cpu: 500m # 400m
+          cpu: 600m # 400m
           memory: 4G # 4G
       sidecarVolumes:
       - name: backup-nfs
