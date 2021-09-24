@@ -27,7 +27,7 @@ spec:
     skipCRDs: false
   valuesFrom:
   - kind: Secret
-    name: gke-paas-2-tenant1-pxc-db-secret # Read passwords from secret
+    name: gke-paas-2-tenant1-app1-pxc-db-secret # Read passwords from secret
     valuesKey: root-password
     targetPath: secrets.passwords.root
   values:
