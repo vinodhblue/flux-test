@@ -1,7 +1,7 @@
 apiVersion:  helm.toolkit.fluxcd.io/v2beta1 
 kind: HelmRelease
 metadata:
-  name: gke-paas-2-tenant1-pxc-db # Should be unique across all apps
+  name: gke-paas-2-tenant1-app1-pxc-db # Should be unique across all apps
   namespace: flux-system
 spec:
   interval: 1m0s
