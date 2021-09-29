@@ -44,13 +44,13 @@ spec:
         size: 1Gi # 1Gi
       resources:
         requests:
-          cpu: "1"
-          memory: 4G # 4G
+          cpu: 400m
+          memory: 1G # 4G
       sidecarVolumes:
       - name: backup-nfs
         persistentVolumeClaim:
           claimName: pvc-pxc-db2 # pvc-pxc-db
-      size: 3
+      size: 1
     retention: 1 # 1
     schedule: 45 23 1 * *
     scheduleIncremental: 45 23 * * 0
