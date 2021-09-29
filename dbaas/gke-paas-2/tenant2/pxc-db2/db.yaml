@@ -41,11 +41,11 @@ spec:
         tag: 8.0.22-13.1
       persistence:
         enabled: true
-        size: 80G # 1Gi
+        size: 1Gi # 1Gi
       resources:
         requests:
           cpu: "1"
-          memory: 3GB # 4G
+          memory: 4G # 4G
       sidecarVolumes:
       - name: backup-nfs
         persistentVolumeClaim:
